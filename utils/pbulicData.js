@@ -1,0 +1,32 @@
+export const wineType = [
+	{
+		id:"guobinyan",
+		label:"洋河国宾宴系列酒",
+		cover:"goods/baijiu/guobinyan/shuangjinzuan1.jpg"
+	},
+	{
+		id:"guoding",
+		label:"洋河国鼎系列酒",
+		cover:"goods/baijiu/guoding/diwanghuang1.jpg"
+	},
+	{
+		id:"huanghelou",
+		label:"黄鹤楼系列酒",
+		cover:"goods/baijiu/huanghelou/geng.jpg"
+	},
+	{
+		id:"yangheyingbin",
+		label:"洋河迎宾系列酒",
+		cover:"goods/baijiu/yangheyingbin/benyuan.jpg"
+	},
+	{
+		id:"yanghemeng",
+		label:"洋河梦系列酒",
+		cover:"goods/baijiu/yanghemeng/meng9.jpg"
+	},
+	{
+		id:"jiangxiang",
+		label:"酱香型酒",
+		cover:"goods/baijiu/jiangxiang/3_1.jpg"
+	},
+]

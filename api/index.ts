@@ -18,14 +18,15 @@ export const getIndexMenu = async () => {
 	const res = await company.where({ headertype: 'indexMenu' }).get()
 	return res[0].data
 }
-//获取所有酒信息
+//获取商品信息
+export const getGoods = async (query = {}) => {
+	const res = await goods.where(query).get()
+	return res
+}
+//获取酒信息
 export const getWine = async (query = {}) => {
 	const params : any = { ...query }
 	params.goodsType = 'wine'
 	const res = await goods.where(params).get()
 	return res
 }
-
-getWine().then(res => {
-	console.log(res);
-})
