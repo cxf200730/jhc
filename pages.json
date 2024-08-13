@@ -3,15 +3,64 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "123"
+			}
+		},
+		{
+			"path": "pages/type/type",
+			"style": {
+				"navigationBarTitleText": "分类",
+				"disableScroll": true
+			}
+		},
+		{
+			"path": "pages/buycar/buycar",
+			"style": {
+				"navigationBarTitleText": "购物车",
+				"disableScroll": true
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				// "navigationBarTitleText": "我的"
+				"navigationStyle": "custom"
 			}
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "健身产品商城",
+		"navigationBarBackgroundColor": "#1BA4F0",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#101010",
+		"selectedColor": "#1ba4f0",
+		"iconWidth": "32rpx",
+		"list": [{
+				"iconPath": "static/tabar-index.png",
+				"selectedIconPath": "static/tabar-index2.png",
+				"pagePath": "pages/index/index",
+				"text": "首页"
+			},
+			{
+				"iconPath": "static/tabar-type.png",
+				"selectedIconPath": "static/tabar-type2.png",
+				"pagePath": "pages/type/type",
+				"text": "分类"
+			}, {
+				"iconPath": "static/tabar-buycar.png",
+				"selectedIconPath": "static/tabar-buycar2.png",
+				"pagePath": "pages/buycar/buycar",
+				"text": "购物车"
+			}, {
+				"iconPath": "static/tabar-my.png",
+				"selectedIconPath": "static/tabar-my2.png",
+				"pagePath": "pages/my/my",
+				"text": "我的"
+			}
+		]
+	}
 }
