@@ -2,7 +2,7 @@ import '/utils/request.js'
 const db = uniCloud.databaseForJQL();
 const company = db.collection('company')
 const goods = db.collection('goods')
-
+const integral = db.collection('integral')
 //获取公司信息
 export const getCompany = async () => {
 	const res = await company.where({ headertype: 'companyinfo' }).get()
@@ -17,6 +17,11 @@ export const getBannerList = async () => {
 export const getIndexMenu = async () => {
 	const res = await company.where({ headertype: 'indexMenu' }).get()
 	return res[0].data
+}
+//获取首页展示的积分商品信息
+export const getIndexIntegral = async () => {
+	const res = await integral.where({ type: 'indexMenu' }).get()
+	return res
 }
 //获取商品信息
 export const getGoods = async (query = {}) => {

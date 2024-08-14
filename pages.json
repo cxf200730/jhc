@@ -26,12 +26,24 @@
 				// "navigationBarTitleText": "我的"
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/integral/integral",
+			"style": {
+				"navigationBarTitleText": "3333"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "login"
+			}
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "white",
+		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "健身产品商城",
-		"navigationBarBackgroundColor": "#1BA4F0",
+		"navigationBarBackgroundColor": "#faf7f3",
 		"backgroundColor": "#F8F8F8"
 	},
 	"uniIdRouter": {},
