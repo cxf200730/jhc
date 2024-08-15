@@ -1,12 +1,14 @@
 <template>
 	<view class="ChooseItem">
-		<view class="item" v-for="i in 2">
-			<view class="img" :style="{ backgroundImage: `url('${menuList[(i - 1) * i]?.bg}')` }">
-				<span>{{ menuList[(i - 1) * i]?.name }}</span>
-			</view>
-			<view class="img" :style="{ backgroundImage: `url('${menuList[(i - 1) * i + 1]?.bg}')` }">
-				<span>{{ menuList[(i - 1) * i + 1]?.name }}</span>
-			</view>
+		<view class="item" v-for="i in 2" :key="i">
+			<template v-if="menuList.length > 0">
+				<view class="img" :style="{ backgroundImage: `url('${menuList[(i - 1) * i]?.bg}')` }">
+					<view class="span">{{ menuList[(i - 1) * i]?.name }}</view>
+				</view>
+				<view class="img" :style="{ backgroundImage: `url('${menuList[(i - 1) * i + 1]?.bg}')` }">
+					<view class="span">{{ menuList[(i - 1) * i + 1]?.name }}</view>
+				</view>
+			</template>
 		</view>
 	</view>
 </template>
@@ -31,12 +33,6 @@ getIndexMenu().then((res) => {
 		};
 	});
 });
-// menuList.value = [
-// 	{ name: '1234', bg: 'https://pica.zhimg.com/v2-6219604e8069cb3c598aa27363ac1511_r.jpg?source=1940ef5c' },
-// 	{ name: '4567', bg: 'https://pica.zhimg.com/v2-6219604e8069cb3c598aa27363ac1511_r.jpg?source=1940ef5c' },
-// 	{ name: '8910', bg: 'https://pica.zhimg.com/v2-6219604e8069cb3c598aa27363ac1511_r.jpg?source=1940ef5c' },
-// 	{ name: '1112', bg: 'https://pica.zhimg.com/v2-6219604e8069cb3c598aa27363ac1511_r.jpg?source=1940ef5c' }
-// ];
 </script>
 
 <style scoped lang="scss">
@@ -58,7 +54,7 @@ getIndexMenu().then((res) => {
 			border-radius: 40rpx;
 			background-size: cover;
 			background-repeat: no-repeat;
-			span {
+			.span {
 				margin: auto;
 			}
 		}

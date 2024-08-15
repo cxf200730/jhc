@@ -1,26 +1,20 @@
 <template>
 	<view class="bg">
-		<button @click="handleLogin">快速注册/登录</button>
+		<view class="top">
+			<image src="/static/login_bg_yuan.svg" style="width: 400rpx; height: 400rpx; position: absolute; right: -140rpx; top: 20rpx"></image>
+			<image src="/static/login_bg_yuan.svg" style="width: 300rpx; height: 300rpx; position: absolute; left: 0rpx; top: -20rpx"></image>
+			<image src="/static/login_bg_yuan.svg" style="width: 300rpx; height: 300rpx; position: absolute; right: 200rpx; top: 200rpx"></image>
+		</view>
+		<LoginView />
 	</view>
 </template>
 
 <script setup>
-import { wxLogin } from '/api/user';
-const handleLogin = () => {
-	wxLogin().then((res) => {
-		uni.setStorageSync('userInfo', res);
-		uni.showToast({
-			title: '登陆成功',
-			icon: 'error',
-			duration: 2000
-		});
-		setTimeout(() => {
-			uni.switchTab({
-				url: '/pages/index/index'
-			});
-		}, 2000);
-	});
-};
+import LoginView from './components/LoginView';
+uni.setNavigationBarColor({
+	frontColor: '#ffffff',
+	backgroundColor: '#b7d2fd'
+});
 </script>
 
 <style scoped lang="scss">
@@ -29,5 +23,7 @@ const handleLogin = () => {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+	background-color: rgb(183, 210, 253);
 }
 </style>

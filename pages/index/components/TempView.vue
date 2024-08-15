@@ -2,7 +2,7 @@
 	<view class="TempView">
 		<view class="top">
 			<Title>撒即可是</Title>
-			<span @click="toPage">查看更多 ></span>
+			<view class="span" @click="toPage">查看更多 ></view>
 		</view>
 
 		<view class="main">

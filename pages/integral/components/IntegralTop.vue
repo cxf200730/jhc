@@ -37,7 +37,7 @@
 	margin: auto;
 	border-radius: 30rpx;
 	display: flex;
-	background-image: url('http://schy75281.hd-bkt.clouddn.com/icon/index_4.jpg');
+	// background-image: url('http://schy75281.hd-bkt.clouddn.com/icon/index_4.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	justify-content: space-around;

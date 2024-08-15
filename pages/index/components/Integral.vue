@@ -1,9 +1,9 @@
 <template>
 	<view class="Integral">
-		<view class="item" v-for="item in data">
-			<img :src="item.cover" alt="" />
-			<span>{{ item.name }}</span>
-			<span>{{ getPrice(item) }}</span>
+		<view class="item" v-for="(item, index) in data" :key="index">
+			<image :src="item.cover" alt="" />
+			<view class="span">{{ item.name }}</view>
+			<view class="span">{{ getPrice(item) }}</view>
 		</view>
 	</view>
 </template>
@@ -36,12 +36,12 @@ const getPrice = (item) => {
 		display: flex;
 		flex-direction: column;
 		width: 130rpx;
-		img {
+		image {
 			width: 130rpx;
 			height: 130rpx;
 			margin-bottom: 10rpx;
 		}
-		span {
+		.span {
 			text-align: center;
 			font-size: 24rpx;
 		}
