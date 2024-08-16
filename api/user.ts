@@ -47,3 +47,7 @@ export const getAllUser = async () => {
 	const res = await user.get()
 	return res
 }
+export const addUser = async (query : object) => {
+	const res = user.add(query)
+	return res
+}

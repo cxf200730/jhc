@@ -1,5 +1,6 @@
 import {
-	wxLogin
+	wxLogin,
+	addUser
 } from '/api/user';
 //判断是否登录
 export const isLogin = () => {
@@ -17,13 +18,12 @@ export const isLogin = () => {
 	}
 }
 //登录
-export const toLogin = () => {
-	//获取用户openid
-	wxLogin().then((res) => {
-		uni.setStorageSync('userInfo', res);
+export const LoginWx = (query) => {
+	addUser(query).then((res) => {
+		uni.setStorageSync('userInfo', query);
 		uni.showToast({
 			title: '登陆成功',
-			icon: 'error',
+			icon: 'success',
 			duration: 2000
 		});
 		setTimeout(() => {
@@ -32,4 +32,16 @@ export const toLogin = () => {
 			});
 		}, 2000);
 	});
+}
+
+
+
+//保存openid到缓存
+export const saveOpenid = () => {
+	const openid = uni.getStorageSync('openid')
+	if (!openid) {
+		wxLogin().then((res) => {
+			uni.setStorageSync('openid', res.openid)
+		});
+	}
 }

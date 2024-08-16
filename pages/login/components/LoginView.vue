@@ -30,6 +30,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { LoginWx } from '/utils/publicFn.js';
 const agree = ref([1]);
 const name = ref('');
 const phone = ref('');
@@ -49,11 +50,13 @@ const toLogin = () => {
 			duration: 2000
 		});
 	} else {
+		const openid = uni.getStorageSync('openid');
 		const query = {
+			openid,
 			name: name.value,
 			phone: phone.value
 		};
-		console.log(query);
+		LoginWx(query);
 	}
 };
 </script>

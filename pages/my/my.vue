@@ -1,15 +1,16 @@
 <template>
 	<view class="bg">
-		<button @click="toPage">123</button>
+		<view class="top"></view>
+		<MyCard />
+		<MyOrder />
+		<MyMore />
 	</view>
 </template>
 
 <script setup>
-const toPage = () => {
-	uni.navigateTo({
-		url: '/pages/login/login'
-	});
-};
+import MyCard from './compontes/MyCard.vue';
+import MyOrder from './compontes/MyOrder.vue';
+import MyMore from './compontes/MyMore.vue';
 </script>
 
 <style scoped lang="scss">
@@ -18,5 +19,17 @@ const toPage = () => {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
+	background-color: #f8f8f8;
+	.top {
+		width: 100%;
+		height: 490rpx;
+		background-color: #59a0ff;
+		border-radius: 0 0 100rpx 100rpx;
+		margin-bottom: 100rpx;
+	}
+	.button {
+		border: 1rpx #000 solid;
+		width: 200rpx;
+	}
 }
 </style>
