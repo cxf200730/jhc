@@ -2,7 +2,7 @@
 	<view class="MyOrder">
 		<view class="title">我的订单</view>
 		<view class="main">
-			<view class="item" v-for="item in myOrderList">
+			<view class="item" v-for="(item, index) in myOrderList" :key="index">
 				<image :src="item.img" class="image"></image>
 				<view>{{ item.name }}</view>
 			</view>

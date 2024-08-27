@@ -1,6 +1,7 @@
 import {
 	wxLogin,
-	addUser
+	addUser,
+	getAllUser
 } from '/api/user';
 //判断是否登录
 export const isLogin = () => {
@@ -34,14 +35,27 @@ export const LoginWx = (query) => {
 	});
 }
 
-
-
-//保存openid到缓存
-export const saveOpenid = () => {
+//小程序打开初始化
+export const init = () => {
 	const openid = uni.getStorageSync('openid')
+	//没有openid说明是首次打开小程序
 	if (!openid) {
 		wxLogin().then((res) => {
 			uni.setStorageSync('openid', res.openid)
 		});
+	} else {
+		getAllUser().then((res) => {
+			if (res.length < 1) {
+				uni.removeStorageSync('userInfo')
+			} else {
+				for (let i = 0; i < res.length; i++) {
+					if (res[i].openid === openid) {
+						uni.setStorageSync('userInfo', res[i]);
+						return
+					}
+				}
+				uni.removeStorageSync('userInfo')
+			}
+		})
 	}
 }

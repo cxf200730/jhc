@@ -6,15 +6,15 @@
 		</view>
 		<view class="main">
 			<view class="item">
-				<view class="value">0</view>
-				<view class="name">余额(元)</view>
+				<view class="value">{{ userInfo.level }}</view>
+				<view class="name">VIP等级</view>
 			</view>
 			<view class="item">
-				<view class="value">0</view>
+				<view class="value">{{ userInfo.coupon }}</view>
 				<view class="name">优惠卷</view>
 			</view>
 			<view class="item">
-				<view class="value">0</view>
+				<view class="value">{{ userInfo.point }}</view>
 				<view class="name">积分</view>
 			</view>
 		</view>

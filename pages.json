@@ -4,13 +4,15 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "123"
+				// "navigationBarBackgroundColor": "#59a0ff"
 			}
 		},
 		{
 			"path": "pages/type/type",
 			"style": {
 				"navigationBarTitleText": "分类",
-				"disableScroll": true
+				"disableScroll": true,
+				"navigationBarBackgroundColor": "#59a0ff"
 			}
 		},
 		{

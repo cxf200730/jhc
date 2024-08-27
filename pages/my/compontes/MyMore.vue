@@ -20,9 +20,9 @@ const myOrderList = ref([
 	{ img: '/static/my/shezhi.svg', name: '设置' }
 ]);
 const toPage = () => {
-	uni.navigateTo({
-		url: '/pages/login/login'
-	});
+	// uni.navigateTo({
+	// 	url: '/pages/login/login'
+	// });
 };
 </script>
 

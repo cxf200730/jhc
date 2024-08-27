@@ -26,6 +26,7 @@ import Integral from './components/Integral.vue';
 	padding: 20rpx;
 	box-sizing: border-box;
 	background-color: #faf7f3;
+	// background-color: #59a0ff;
 	.main {
 		display: flex;
 		flex-direction: column;
