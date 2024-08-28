@@ -44,18 +44,22 @@ export const init = () => {
 			uni.setStorageSync('openid', res.openid)
 		});
 	} else {
-		getAllUser().then((res) => {
-			if (res.length < 1) {
-				uni.removeStorageSync('userInfo')
-			} else {
-				for (let i = 0; i < res.length; i++) {
-					if (res[i].openid === openid) {
-						uni.setStorageSync('userInfo', res[i]);
-						return
-					}
-				}
-				uni.removeStorageSync('userInfo')
+		refreshUser()
+	}
+}
+//重新获取用户信息保存到缓存
+export const refreshUser = async () => {
+	const openid = uni.getStorageSync('openid')
+	const res = await getAllUser()
+	if (res.length < 1) {
+		uni.removeStorageSync('userInfo')
+	} else {
+		for (let i = 0; i < res.length; i++) {
+			if (res[i].openid === openid) {
+				uni.setStorageSync('userInfo', res[i]);
+				return
 			}
-		})
+		}
+		uni.removeStorageSync('userInfo')
 	}
 }

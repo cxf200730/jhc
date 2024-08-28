@@ -1,10 +1,10 @@
 <template>
 	<view class="IntegralTop">
 		<view class="top">
-			<view class="top_main">
+			<view class="top_main" :style="{ 'background-image': `url(${bgURL})` }">
 				<view>
 					<view style="margin: 20rpx">累计总积分</view>
-					<view style="margin: 20rpx; font-size: 60rpx; font-weight: 500">0</view>
+					<view style="margin: 20rpx; font-size: 60rpx; font-weight: 500">{{ myPoint }}</view>
 				</view>
 
 				<view style="font-size: 50rpx; display: flex">
@@ -15,12 +15,18 @@
 	</view>
 </template>
 
-<script setup></script>
+<script setup>
+defineProps({
+	myPoint: {
+		default: 0
+	}
+});
+const bgURL = uni.getStorageSync('baseURL') + '/integral/bg.jpg';
+</script>
 
 <style scoped lang="scss">
 .IntegralTop {
 	width: 100%;
-	height: 100vh;
 	display: flex;
 	flex-direction: column;
 }
@@ -41,5 +47,7 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	justify-content: space-around;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 </style>

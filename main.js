@@ -24,6 +24,10 @@ export function createApp() {
 // #endif
 uni.setStorageSync('baseURL', 'https://wuainin-1303218521.cos.ap-nanjing.myqcloud.com/jhcimgs/')
 import {
-	init
+	init,
+	refreshUser
 } from '/utils/publicFn.js'
 init()
+wx.onAppRoute(() => {
+	refreshUser()
+})

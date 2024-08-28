@@ -25,13 +25,6 @@ getIndexMenu().then((res) => {
 		};
 	});
 	menuList.value = result;
-	let i = 0;
-	menuList.value = menuList.value.map((item) => {
-		return {
-			...item,
-			name: ++i
-		};
-	});
 });
 </script>
 

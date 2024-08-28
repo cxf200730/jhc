@@ -47,7 +47,14 @@ export const getAllUser = async () => {
 	const res = await user.get()
 	return res
 }
+//添加用户（注册）
 export const addUser = async (query : object) => {
 	const res = user.add(query)
+	return res
+}
+//修改用户信息
+export const editUser = async (query : object) => {
+	const myID : string = uni.getStorageSync('userInfo')._id;
+	const res = user.doc(myID).update(query)
 	return res
 }

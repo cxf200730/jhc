@@ -1,7 +1,7 @@
 <template>
 	<view class="bg">
 		<view class="top"></view>
-		<MyCard />
+		<MyCard :userInfo="userInfo" />
 		<MyOrder />
 		<MyMore />
 	</view>
@@ -11,6 +11,15 @@
 import MyCard from './compontes/MyCard.vue';
 import MyOrder from './compontes/MyOrder.vue';
 import MyMore from './compontes/MyMore.vue';
+import { onShow } from '@dcloudio/uni-app';
+import { refreshUser } from '../../utils/publicFn';
+import { ref } from 'vue';
+let userInfo = ref(uni.getStorageSync('userInfo'));
+onShow(() => {
+	setTimeout(() => {
+		userInfo.value = uni.getStorageSync('userInfo');
+	}, 500);
+});
 </script>
 
 <style scoped lang="scss">

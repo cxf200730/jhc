@@ -1,7 +1,7 @@
 <template>
 	<view class="TempView">
 		<view class="top">
-			<Title>撒即可是</Title>
+			<Title>积分兑换</Title>
 			<view class="span" @click="toPage">查看更多 ></view>
 		</view>
 

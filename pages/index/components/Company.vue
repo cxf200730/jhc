@@ -3,7 +3,7 @@
 		<view class="top" bindtap="toinfo">
 			<view class="top-main">
 				<view class="main-left">
-					<image :src="company.icon" mode="" style="height: 150rpx; width: 150rpx" />
+					<image v-if="company.icon" :src="baseURL + company.icon" style="height: 150rpx; width: 150rpx" />
 				</view>
 				<view class="main-right">
 					<view class="right-top">
@@ -21,16 +21,11 @@
 <script setup>
 import { ref } from 'vue';
 import { getCompany } from '/api/index';
-const company = ref('');
-// getCompany().then((res) => {
-// 	company.value = res;
-// 	console.log(res);
-// });
-company.value = {
-	name: '阿德黄金卡回到家啊电话',
-	enName: 'abcjskldakl',
-	icon: 'https://bpic.51yuansu.com/pic3/cover/04/05/50/6136732c56a42_610.jpg?x-oss-process=image/resize,w_260/sharpen,100'
-};
+let company = ref({});
+getCompany().then((res) => {
+	company.value = res;
+});
+const baseURL = uni.getStorageSync('baseURL');
 </script>
 
 <style scoped lang="scss">
