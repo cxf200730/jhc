@@ -47,6 +47,13 @@
 			"style": {
 				"navigationBarTitleText": "商品详情"
 			}
+		},
+
+		{
+			"path": "pages/orderForm/orderForm",
+			"style": {
+				"navigationBarTitleText": "我的订单"
+			}
 		}
 	],
 	"globalStyle": {

@@ -10,6 +10,36 @@
 	"properties": {
 		"_id": {
 			"description": "ID，系统自动生成"
+		},
+		"userId": {
+			"description": "用户id"
+		},
+		"userName": {
+			"description": "用户名称",
+			"trim": "both"
+		},
+		"userPhone": {
+			"description": "用户手机号"
+		},
+		"exchangeId": {
+			"description": "兑换的商品的id"
+		},
+		"exchangeName": {
+			"description": "兑换的商品的名称",
+			"trim": "both"
+		},
+		"exchangePrice": {
+			"description": "兑换的商品所需的积分"
+		},
+		"exchangeTime": {
+			"description": "兑换的商品的时间"
+		},
+		"brforePoint": {
+			"description": "兑换前用户的积分"
+		},
+		"afterPoint": {
+			"description": "兑换后用户剩余积分"
 		}
+
 	}
 }

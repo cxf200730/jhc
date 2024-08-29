@@ -46,8 +46,11 @@ import { onLoad } from '@dcloudio/uni-app';
 import { ref } from 'vue';
 import { getOneIntegral } from '/api/integral';
 import { editUser } from '/api/user';
+import { addLog } from '/api/log';
+import { getNowTime } from '/utils/publicFn';
+import orderFormVue from '../orderForm/orderForm.vue';
 const baseURL = uni.getStorageSync('baseURL');
-
+const userInfo = uni.getStorageSync('userInfo');
 let good = ref({});
 onLoad((options) => {
 	getOneIntegral(options.id).then((res) => {
@@ -65,12 +68,12 @@ const openUI = () => {
 		});
 	} else {
 		alertDialog.value.open();
-		content.value = `商品所需积分：${good.value.price},您的积分是：${uni.getStorageSync('userInfo').point},确认兑换吗?`;
+		content.value = `商品所需积分：${good.value.price},您的积分是：${userInfo.point},确认兑换吗?`;
 	}
 };
-let content = ref(`商品所需积分：${good.value.price},您的积分是：${uni.getStorageSync('userInfo').point},确认兑换吗?`);
+let content = ref(`商品所需积分：${good.value.price},您的积分是：${userInfo.point},确认兑换吗?`);
 const dialogConfirm = () => {
-	const myScore = uni.getStorageSync('userInfo').point;
+	const myScore = userInfo.point;
 	const needScore = parseInt(good.value.price);
 	if (needScore > myScore) {
 		uni.showToast({
@@ -87,6 +90,22 @@ const dialogConfirm = () => {
 				title: '兑换成功',
 				icon: 'success',
 				duration: 3000
+			});
+			const params = {
+				userId: userInfo._id,
+				userName: userInfo.name,
+				userPhone: userInfo.phone,
+				exchangeId: good.value._id,
+				exchangeName: good.value.name,
+				exchangePrice: needScore,
+				exchangeTime: getNowTime(),
+				brforePoint: myScore,
+				afterPoint: myScore - needScore
+			};
+			addLog(params).then((res) => {
+				uni.navigateTo({
+					url: '/pages/orderForm/orderForm'
+				});
 			});
 		});
 	}

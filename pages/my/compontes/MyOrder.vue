@@ -2,7 +2,7 @@
 	<view class="MyOrder">
 		<view class="title">我的订单</view>
 		<view class="main">
-			<view class="item" v-for="(item, index) in myOrderList" :key="index">
+			<view class="item" v-for="(item, index) in myOrderList" :key="index" @click="toPage(index)">
 				<image :src="item.img" class="image"></image>
 				<view>{{ item.name }}</view>
 			</view>
@@ -19,6 +19,11 @@ const myOrderList = ref([
 	{ img: '/static/my/awaitReturn.svg', name: '退款/售后' },
 	{ img: '/static/my/awaitAll.svg', name: '全部订单' }
 ]);
+const toPage = (index) => {
+	uni.navigateTo({
+		url: `/pages/orderForm/orderForm?current=${index}`
+	});
+};
 </script>
 
 <style scoped lang="scss">
