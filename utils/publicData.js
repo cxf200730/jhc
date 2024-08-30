@@ -1,3 +1,4 @@
+const openid = uni.getStorageSync('openid')
 export const typeName = [{
 		id: "wine",
 		value: "白酒"

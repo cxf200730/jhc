@@ -4,7 +4,7 @@ const log = db.collection('log')
 
 //获取所有日志信息
 export const getAllLog = async () => {
-	const res = await log.get()
+	const res = await log.orderBy('_id', 'desc').get()
 	return res
 }
 //添加日志

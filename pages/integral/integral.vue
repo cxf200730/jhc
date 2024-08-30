@@ -38,7 +38,7 @@ onLoad(() => {
 
 onShow(() => {
 	setTimeout(() => {
-		myPoint = uni.getStorageSync('userInfo').point;
+		myPoint.value = uni.getStorageSync('userInfo').point;
 	}, 500);
 });
 const goods = ref([]);

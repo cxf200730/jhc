@@ -8,7 +8,7 @@
 				</view>
 
 				<view style="font-size: 50rpx; display: flex">
-					<view style="margin: auto; text-decoration: underline" bind:tap="guize">积分规则</view>
+					<view style="margin: auto; text-decoration: underline" @click="toPage">积分规则</view>
 				</view>
 			</view>
 		</view>
@@ -22,6 +22,11 @@ defineProps({
 	}
 });
 const bgURL = uni.getStorageSync('baseURL') + '/integral/bg.jpg';
+const toPage = () => {
+	uni.navigateTo({
+		url: '/pages/integral/integralRule'
+	});
+};
 </script>
 
 <style scoped lang="scss">

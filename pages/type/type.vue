@@ -1,6 +1,7 @@
 <template>
 	<view class="bg">
-		<Serch v-model="searchText" />
+		<uni-search-bar class="uni-mt-10" radius="5" placeholder="请输入搜索内容" clearButton="auto" cancelButton="none" @input="search" />
+
 		<view class="main">
 			<scroll-view class="left" scroll-y>
 				<view v-for="(item, index) in goodsList" :key="index" :class="tabCur === index ? 'goodsTitle active' : 'goodsTitle'" @click="chooseMenu(item)">
@@ -15,7 +16,7 @@
 							<image :src="baseURL + itemName.cover" class="img"></image>
 							<view class="name">{{ itemName.name }}</view>
 							<view class="sell">{{ itemName.dushu }}</view>
-							<view class="price">{{ itemName.danjia }}￥</view>
+							<view class="danjia">{{ itemName.danjia }}￥</view>
 						</view>
 					</template>
 				</view>
@@ -25,147 +26,19 @@
 </template>
 
 <script setup>
-import Serch from './components/Serch';
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 import { getGoods } from '/api/index';
-import { typeName } from './jsonData';
-const searchText = ref('');
-watchEffect(() => {
-	console.log(searchText.value);
-});
+import { typeName } from '/utils/publicData.js';
+
 const baseURL = uni.getStorageSync('baseURL');
+const search = (e) => {
+	console.log(e);
+};
 const tabCur = ref(0); //当前项
 const rightCur = ref(0); // 用于实现左边联动右边
 const scrollTop = ref();
 const index = ref();
-const goodsList = ref([
-	{
-		title: '碳酸类型',
-		id: 0,
-		list: [
-			{
-				name: '可口可乐',
-				img: 'https://img2.baidu.com/it/u=3616759465,2727399041&fm=253&fmt=auto&app=138&f=JPEG?w=375&h=500',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '雪碧',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.51yuansu.com%2Fpic3%2Fcover%2F01%2F93%2F00%2F5982eed63cc27_610.jpg&refer=http%3A%2F%2Fpic.51yuansu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662339581&t=8bbd7f16e03512ff0e8c32100bbcfc86',
-				sell: '月售：88',
-				price: '4.8'
-			},
-			{
-				name: '可口可乐',
-				img: 'https://img2.baidu.com/it/u=3616759465,2727399041&fm=253&fmt=auto&app=138&f=JPEG?w=375&h=500',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '雪碧',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.51yuansu.com%2Fpic3%2Fcover%2F01%2F93%2F00%2F5982eed63cc27_610.jpg&refer=http%3A%2F%2Fpic.51yuansu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662339581&t=8bbd7f16e03512ff0e8c32100bbcfc86',
-				sell: '月售：88',
-				price: '4.8'
-			},
-			{
-				name: '可口可乐',
-				img: 'https://img2.baidu.com/it/u=3616759465,2727399041&fm=253&fmt=auto&app=138&f=JPEG?w=375&h=500',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '雪碧',
-				img: 'https://img2.baidu.com/it/u=3616759465,2727399041&fm=253&fmt=auto&app=138&f=JPEG?w=375&h=500',
-				sell: '月售：88',
-				price: '4.8'
-			}
-		]
-	},
-	{
-		title: '奶茶类型',
-		id: 1,
-		list: [
-			{
-				name: '阿萨姆奶茶',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcbu01.alicdn.com%2Fimg%2Fibank%2FO1CN01SHPIlm2GVfaCwHCfx_%21%212211349499021-0-cib.jpg&refer=http%3A%2F%2Fcbu01.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662285715&t=c575199b747c342d0844a1d8ab593a04',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '香飘飘奶茶',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcbu01.alicdn.com%2Fimg%2Fibank%2FO1CN01SHPIlm2GVfaCwHCfx_%21%212211349499021-0-cib.jpg&refer=http%3A%2F%2Fcbu01.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662285715&t=c575199b747c342d0844a1d8ab593a04',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '阿萨姆奶茶',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcbu01.alicdn.com%2Fimg%2Fibank%2FO1CN01SHPIlm2GVfaCwHCfx_%21%212211349499021-0-cib.jpg&refer=http%3A%2F%2Fcbu01.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662285715&t=c575199b747c342d0844a1d8ab593a04',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '香飘飘奶茶',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcbu01.alicdn.com%2Fimg%2Fibank%2FO1CN01SHPIlm2GVfaCwHCfx_%21%212211349499021-0-cib.jpg&refer=http%3A%2F%2Fcbu01.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662285715&t=c575199b747c342d0844a1d8ab593a04',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '阿萨姆奶茶',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcbu01.alicdn.com%2Fimg%2Fibank%2FO1CN01SHPIlm2GVfaCwHCfx_%21%212211349499021-0-cib.jpg&refer=http%3A%2F%2Fcbu01.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662285715&t=c575199b747c342d0844a1d8ab593a04',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '香飘飘奶茶',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcbu01.alicdn.com%2Fimg%2Fibank%2FO1CN01SHPIlm2GVfaCwHCfx_%21%212211349499021-0-cib.jpg&refer=http%3A%2F%2Fcbu01.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662285715&t=c575199b747c342d0844a1d8ab593a04',
-				sell: '月售：108',
-				price: '4.8'
-			}
-		]
-	},
-	{
-		title: '矿泉水',
-		id: 2,
-		list: [
-			{
-				name: '农夫山泉',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.defanli.com%2Fi4%2F792547767%2FO1CN01HuwT1T27FKjNjeyQO_%21%21792547767.jpg_q90.jpg&refer=http%3A%2F%2Fimg.defanli.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662285923&t=29d7244212e15dc78bb5bdf1d617a45f',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '怡宝',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.yzcdn.cn%2Fupload_files%2F2018%2F11%2F05%2FFonL0_5VwTfHmiwQiAlBtIZiy3sq.jpg%3FimageView2%2F2%2Fw%2F580%2Fh%2F580%2Fq%2F75%2Fformat%2Fjpg&refer=http%3A%2F%2Fimg.yzcdn.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662339509&t=e1988f3159060384664ce3de18e45aaf',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '农夫山泉',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.defanli.com%2Fi4%2F792547767%2FO1CN01HuwT1T27FKjNjeyQO_%21%21792547767.jpg_q90.jpg&refer=http%3A%2F%2Fimg.defanli.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662285923&t=29d7244212e15dc78bb5bdf1d617a45f',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '怡宝',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.yzcdn.cn%2Fupload_files%2F2018%2F11%2F05%2FFonL0_5VwTfHmiwQiAlBtIZiy3sq.jpg%3FimageView2%2F2%2Fw%2F580%2Fh%2F580%2Fq%2F75%2Fformat%2Fjpg&refer=http%3A%2F%2Fimg.yzcdn.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662339509&t=e1988f3159060384664ce3de18e45aaf',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '农夫山泉',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.defanli.com%2Fi4%2F792547767%2FO1CN01HuwT1T27FKjNjeyQO_%21%21792547767.jpg_q90.jpg&refer=http%3A%2F%2Fimg.defanli.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662285923&t=29d7244212e15dc78bb5bdf1d617a45f',
-				sell: '月售：108',
-				price: '4.8'
-			},
-			{
-				name: '怡宝',
-				img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.yzcdn.cn%2Fupload_files%2F2018%2F11%2F05%2FFonL0_5VwTfHmiwQiAlBtIZiy3sq.jpg%3FimageView2%2F2%2Fw%2F580%2Fh%2F580%2Fq%2F75%2Fformat%2Fjpg&refer=http%3A%2F%2Fimg.yzcdn.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662339509&t=e1988f3159060384664ce3de18e45aaf',
-				sell: '月售：108',
-				price: '4.8'
-			}
-		]
-	}
-]);
+const goodsList = ref([]);
 
 const chooseMenu = (e) => {
 	tabCur.value = e.id;
@@ -177,18 +50,16 @@ const scrollLink = (e) => {
 	for (let i = 0; i < list.length; i++) {
 		//拿到每个元素
 		let els = wx.createSelectorQuery().select('#scroll-' + i);
-		els
-			.fields(
-				{
-					size: true
-				},
-				function (res) {
-					list[i].top = itemHeight;
-					itemHeight += res.height;
-					list[i].bottom = itemHeight;
-				}
-			)
-			.exec();
+		els.fields(
+			{
+				size: true
+			},
+			function (res) {
+				list[i].top = itemHeight;
+				itemHeight += res.height;
+				list[i].bottom = itemHeight;
+			}
+		).exec();
 	}
 
 	// // 拿到滚动的高度
@@ -201,11 +72,13 @@ const scrollLink = (e) => {
 	}
 };
 getGoods().then((res) => {
+	let count = 0;
 	const output = res.reduce((accumulator, currentValue) => {
 		// 检查累加器中是否已经存在当前类型的键
 		if (!accumulator[currentValue.goodsType]) {
 			// 如果不存在，则创建一个新条目，并将当前data放入list数组中
-			accumulator[currentValue.goodsType] = { goodsType: currentValue.goodsType, list: [currentValue.data] };
+			accumulator[currentValue.goodsType] = { goodsType: currentValue.goodsType, list: [currentValue.data], id: count };
+			count++;
 		} else {
 			// 如果已存在，则将当前data添加到对应goodsType的list数组中
 			accumulator[currentValue.goodsType].list.push(currentValue.data);
@@ -283,21 +156,26 @@ getGoods().then((res) => {
 		.listItem .name {
 			position: absolute;
 			top: 0;
-			left: 190rpx;
-			font-size: 36rpx;
-			font-weight: 700;
+			left: 220rpx;
+			font-size: 32rpx;
+			font-weight: blod;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 		.listItem .sell {
 			position: absolute;
-			top: 40%;
-			left: 190rpx;
+			top: 50%;
+			left: 220rpx;
 			color: #858687;
 			font-size: 30rpx;
 		}
-		.listItem .price {
+		.listItem .danjia {
 			position: absolute;
 			bottom: 5rpx;
-			left: 190rpx;
+			left: 220rpx;
 			color: #ff4a26;
 			font-weight: 700;
 		}

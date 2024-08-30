@@ -44,7 +44,7 @@ export const wxLogin = async () => {
 };
 //获取所有用户
 export const getAllUser = async () => {
-	const res = await user.get()
+	const res = await user.orderBy('_id', 'desc').get()
 	return res
 }
 //添加用户（注册）
@@ -56,5 +56,12 @@ export const addUser = async (query : object) => {
 export const editUser = async (query : object) => {
 	const myID : string = uni.getStorageSync('userInfo')._id;
 	const res = user.doc(myID).update(query)
+	return res
+}
+//修改其他用户信息
+export const editOtherUser = async (query : any) => {
+	const id : string = query.id;
+	delete query.id
+	const res = user.doc(id).update(query)
 	return res
 }

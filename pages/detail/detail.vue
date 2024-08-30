@@ -97,6 +97,7 @@ const dialogConfirm = () => {
 				userPhone: userInfo.phone,
 				exchangeId: good.value._id,
 				exchangeName: good.value.name,
+				exchangeImg: good.value.cover,
 				exchangePrice: needScore,
 				exchangeTime: getNowTime(),
 				brforePoint: myScore,
@@ -104,7 +105,7 @@ const dialogConfirm = () => {
 			};
 			addLog(params).then((res) => {
 				uni.navigateTo({
-					url: '/pages/orderForm/orderForm'
+					url: '/pages/orderForm/orderForm?current=4'
 				});
 			});
 		});

@@ -2,9 +2,13 @@
 	<view class="MyMore">
 		<view class="title">更多服务</view>
 		<view class="main">
-			<view class="item" v-for="(item, index) in myOrderList" :key="index" @click="toPage">
+			<view class="item" v-for="(item, index) in myOrderList" :key="index" @click="toPage(item)">
 				<image :src="item.img" class="image"></image>
 				<view>{{ item.name }}</view>
+			</view>
+			<view class="item" @click="toPage(admin)" v-if="userInfo.identity">
+				<image :src="admin.img" class="image"></image>
+				<view>{{ admin.name }}</view>
 			</view>
 		</view>
 	</view>
@@ -12,6 +16,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const userInfo = ref(uni.getStorageSync('userInfo'));
 const myOrderList = ref([
 	{ img: '/static/my/yaoqingyouli.svg', name: '邀请有礼' },
 	{ img: '/static/my/qiyezizhi.svg', name: '企业资质' },
@@ -19,10 +24,18 @@ const myOrderList = ref([
 	{ img: '/static/my/kefuzhongxin.svg', name: '客服中心' },
 	{ img: '/static/my/shezhi.svg', name: '设置' }
 ]);
-const toPage = () => {
-	// uni.navigateTo({
-	// 	url: '/pages/login/login'
-	// });
+const admin = { img: '/static/my/shezhi.svg', name: '管理员', page: '/pages/admin/admin' };
+const toPage = (item) => {
+	if (item.page) {
+		uni.navigateTo({
+			url: item.page
+		});
+	} else {
+		uni.showToast({
+			title: '敬请期待！',
+			icon: 'none'
+		});
+	}
 };
 </script>
 

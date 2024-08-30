@@ -2,10 +2,10 @@
 	<view class="ChooseItem">
 		<view class="item" v-for="i in 2" :key="i">
 			<template v-if="menuList.length > 0">
-				<view class="img" :style="{ backgroundImage: `url('${menuList[(i - 1) * i]?.bg}')` }">
+				<view class="img" :style="{ backgroundImage: `url('${menuList[(i - 1) * i]?.bg}')` }" @click="toPage(menuList[(i - 1) * i]?.name)">
 					<view class="span">{{ menuList[(i - 1) * i]?.name }}</view>
 				</view>
-				<view class="img" :style="{ backgroundImage: `url('${menuList[(i - 1) * i + 1]?.bg}')` }">
+				<view class="img" :style="{ backgroundImage: `url('${menuList[(i - 1) * i + 1]?.bg}')` }" @click="toPage(menuList[(i - 1) * i + 1]?.name)">
 					<view class="span">{{ menuList[(i - 1) * i + 1]?.name }}</view>
 				</view>
 			</template>
@@ -26,6 +26,18 @@ getIndexMenu().then((res) => {
 	});
 	menuList.value = result;
 });
+const toPage = (i) => {
+	if (i === '会员中心') {
+	} else if (i === '电子商城') {
+		uni.switchTab({
+			url: '/pages/type/type'
+		});
+	} else if (i === '积分兑换') {
+		uni.navigateTo({
+			url: '/pages/integral/integral'
+		});
+	}
+};
 </script>
 
 <style scoped lang="scss">

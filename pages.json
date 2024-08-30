@@ -54,6 +54,22 @@
 			"style": {
 				"navigationBarTitleText": "我的订单"
 			}
+		},
+		{
+			"path": "pages/admin/admin",
+			"style": {
+				"navigationBarTitleText": "管理员页面"
+			}
+		}, {
+			"path": "pages/integral/integralRule",
+			"style": {
+				"navigationBarTitleText": "积分规则"
+			}
+		}, {
+			"path": "pages/cooperate/cooperate",
+			"style": {
+				"navigationBarTitleText": "战略联盟"
+			}
 		}
 	],
 	"globalStyle": {
@@ -83,6 +99,11 @@
 				"selectedIconPath": "static/tabar-buycar2.png",
 				"pagePath": "pages/buycar/buycar",
 				"text": "购物车"
+			}, {
+				"iconPath": "static/hezuo.png",
+				"selectedIconPath": "static/hezuo2.png",
+				"pagePath": "pages/cooperate/cooperate",
+				"text": "战略联盟"
 			}, {
 				"iconPath": "static/tabar-my.png",
 				"selectedIconPath": "static/tabar-my2.png",
