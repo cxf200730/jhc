@@ -1,6 +1,6 @@
 <template>
 	<view class="cooperate" :style="{ 'background-image': `url(${bgURL})` }">
-		<view class="item" v-for="(item, index) in list" :key="index">
+		<view class="item" v-for="(item, index) in list" :key="index" @click="toPage(item)">
 			<view>
 				<view class="title">
 					{{ item.title }}
@@ -61,6 +61,12 @@ if (wx.createRewardedVideoAd) {
 	});
 	videoAd.onClose((res) => {});
 }
+
+const toPage = (item) => {
+	uni.navigateTo({
+		url: `/pages/cooperateDetail/cooperateDetail?id=${item._id}`
+	});
+};
 </script>
 
 <style scoped lang="scss">

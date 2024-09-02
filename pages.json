@@ -70,6 +70,11 @@
 			"style": {
 				"navigationBarTitleText": "战略联盟"
 			}
+		}, {
+			"path": "pages/cooperateDetail/cooperateDetail",
+			"style": {
+				"navigationBarTitleText": "战略联盟"
+			}
 		}
 	],
 	"globalStyle": {
