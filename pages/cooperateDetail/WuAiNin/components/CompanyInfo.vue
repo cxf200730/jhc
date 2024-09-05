@@ -13,7 +13,7 @@
 
 			<view class="yanyuan">
 				<view class="yanyuan-main">
-					<view class="yanyuan-item-main">
+					<view class="yanyuan-item-main" @click="toPage">
 						<view class="yanyuan-item" v-for="(item, index) in company.actorIndex" :key="index">
 							<image :src="baseURL + item.cover" mode="aspectFit" style="width: 100%" />
 							<view style="width: 100%; height: 50rpx; text-align: center; margin-top: auto; letter-spacing: 2rpx; line-height: 70rpx">
@@ -41,6 +41,11 @@ const props = defineProps({
 const baseURL = ref(uni.getStorageSync('baseURL'));
 const moreImg = ref('/static/more.png');
 const infoName = ref('吾爱您（武汉）文化传媒有限公司');
+const toPage = () => {
+	uni.navigateTo({
+		url: '/pages/wuainin/wuainin?name=actor'
+	});
+};
 </script>
 
 <style scoped lang="scss">

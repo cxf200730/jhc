@@ -2,12 +2,14 @@
 	<view class="WuAiNin">
 		<CompanyInfo :company="company" />
 		<Banner :company="company" />
+		<MoreNews />
 	</view>
 </template>
 
 <script setup>
 import CompanyInfo from './components/CompanyInfo.vue';
 import Banner from './components/Banner.vue';
+import MoreNews from './components/MoreNews.vue';
 import { defineProps } from 'vue';
 const props = defineProps({
 	company: {

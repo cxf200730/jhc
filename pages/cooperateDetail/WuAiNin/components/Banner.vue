@@ -2,8 +2,9 @@
 	<view class="Banner">
 		<view class="lunbo">
 			<swiper interval="3000" indicator-dots="{{false}}" indicator-color="#fff" autoplay="true" circular="true">
-				<swiper-item wx:for="{{lunbo}}" wx:key="index">
-					<navigator class="swiper-item" style="background-image: url({{item}});" url="/pages/index/pages?index={{lunboname[index][0]}}&&name={{lunboname[index][1]}}">
+				<swiper-item v-for="(item, index) in company?.banner" :key="index">
+					<navigator class="swiper-item" :style="{ 'background-image': `url(${baseURL + item})` }">
+						<!-- url="/pages/index/pages?index={{lunboname[index][0]}}&&name={{lunboname[index][1]}} -->
 						<view class="lunbo_words">
 							<view style="float: right; margin-right: 20rpx">133 0710 9619</view>
 						</view>
@@ -21,6 +22,7 @@ const props = defineProps({
 		default: ''
 	}
 });
+const baseURL = uni.getStorageSync('baseURL');
 </script>
 
 <style scoped lang="scss">

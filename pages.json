@@ -75,6 +75,23 @@
 			"style": {
 				"navigationBarTitleText": "战略联盟"
 			}
+		}, {
+			"path": "pages/wuainin/wuainin",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/wuainin/actorDetail",
+			"style": {
+				"navigationBarTitleText": "演员详情"
+			}
+		},
+		{
+			"path": "pages/wuainin/chenggonganliDetail",
+			"style": {
+				"navigationBarTitleText": " 精彩节目"
+			}
 		}
 	],
 	"globalStyle": {
